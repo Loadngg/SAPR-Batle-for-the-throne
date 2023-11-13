@@ -3,5 +3,6 @@
 2 - враги
 3 - перс
 4 - доп. тайлмап
-5 - player ui
-6 - interface
+5 - блики
+6 - player ui
+7 - interface

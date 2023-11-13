@@ -11,8 +11,8 @@ public class NPC : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.layer != LayerMask.NameToLayer("Player") || text.Length == 0) return;
-        ui = col.gameObject.GetComponentInChildren<Ui>();
 
+        ui = col.gameObject.GetComponentInChildren<Ui>();
         if (!ui.IsVisible()) ui.ShowUi();
     }
 
@@ -27,14 +27,21 @@ public class NPC : MonoBehaviour
 
     void Update()
     {
+        if (!Input.GetKeyDown(KeyCode.I)) return;
         if (!ui) return;
+        if (!ui.IsVisible() && !storytelling.IsVisible()) return;
 
-        if (ui.IsVisible() && Input.GetKeyDown(KeyCode.I)) 
+        if (ui.IsVisible()) ui.HideUi();
+        if (!storytelling.IsVisible()) storytelling.ShowUi();
+
+        if (textIndex == text.Length) 
         {
-            if (!storytelling.IsVisible())
-                storytelling.ShowUi();
-
-            if (textIndex == text.Length) textIndex = 0;
+            textIndex = 0;
+            storytelling.HideUi();
+            ui.ShowUi();
+        } 
+        else
+        {
             storytelling.SetText(text[textIndex]);
             textIndex++;
         }

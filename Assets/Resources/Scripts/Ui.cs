@@ -17,14 +17,14 @@ public class Ui : MonoBehaviour
     
     void Update()
     {
-        if (fadeIn)
+        if (fadeIn && !fadeOut)
             if (ui.alpha < 1)
             {
                 ui.alpha += fadeTimeScale * Time.deltaTime;
                 if (ui.alpha >= 1) fadeIn = false;
             }
 
-        if (fadeOut)
+        if (!fadeIn && fadeOut)
             if (ui.alpha >= 0)
             {
                 ui.alpha -= fadeTimeScale * Time.deltaTime;
@@ -35,10 +35,12 @@ public class Ui : MonoBehaviour
     public void ShowUi()
     {
         fadeIn = true;
+        fadeOut = false;
     }
 
     public void HideUi()
     {
+        fadeIn = false;
         fadeOut = true;
     }
 

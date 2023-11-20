@@ -2,7 +2,7 @@ using System.Collections;
 using TarodevController;
 using UnityEngine;
 
-public class DashController : MonoBehaviour
+public class PlayerCustomController : MonoBehaviour
 {
     Rigidbody2D rb;
     PlayerController controller;
@@ -24,6 +24,14 @@ public class DashController : MonoBehaviour
         {
             if (rightView) StartCoroutine(Dash(1f));
             else StartCoroutine(Dash(-1f));
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Debug.Log("Пауза");
+        }
+
+        if (Input.GetKeyDown(KeyCode.F)) {
+            Debug.Log("Магия");
         }
     }
 

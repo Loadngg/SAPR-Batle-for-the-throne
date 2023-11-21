@@ -20,14 +20,14 @@ public class Ui : MonoBehaviour
         if (fadeIn && !fadeOut)
             if (ui.alpha < 1)
             {
-                ui.alpha += fadeTimeScale * Time.deltaTime;
+                ui.alpha += fadeTimeScale * Time.unscaledDeltaTime;
                 if (ui.alpha >= 1) fadeIn = false;
             }
 
         if (!fadeIn && fadeOut)
             if (ui.alpha >= 0)
             {
-                ui.alpha -= fadeTimeScale * Time.deltaTime;
+                ui.alpha -= fadeTimeScale * Time.unscaledDeltaTime;
                 if (ui.alpha == 0) fadeOut = false;
             }
     }
@@ -60,7 +60,7 @@ public class Ui : MonoBehaviour
         text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
         while (text.color.a < 1.0f)
         {
-            text.color = new Color(text.color.r, text.color.g, text.color.b, text.color.a + (Time.deltaTime * timeSpeed));
+            text.color = new Color(text.color.r, text.color.g, text.color.b, text.color.a + (Time.unscaledDeltaTime * timeSpeed));
             yield return null;
         }
     }

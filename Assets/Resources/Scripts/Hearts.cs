@@ -16,11 +16,11 @@ public class Hearts : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q)) Heal();
     }
 
-    public void GetDamage()
+    public void GetDamage(int damage = 1)
     {
         hearts[_countFilled].SetActive(false);
         if (_countFilled == 0) return;
-        if (_countFilled > 0) _countFilled--;
+        if (_countFilled > 0) _countFilled -= damage;
     }
 
     public void Heal()
